@@ -1,0 +1,126 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container columns">
+    <div class="about">
+      <a href="/" class="brand">
+        <Logo size={24} />
+        <span>{site.name}</span>
+      </a>
+      <p>
+        Booking software for clinics and studios. Made by {site.company} in Helsinki.
+      </p>
+    </div>
+
+    <div>
+      <h2>Product</h2>
+      <ul>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href={site.appUrl}>Log in</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="/about">About us</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Contact</h2>
+      <address>
+        {site.company}<br />
+        {site.address.street}<br />
+        {site.address.postcode} {site.address.city}<br />
+        <a href={`mailto:${site.email}`}>{site.email}</a><br />
+        <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
+      </address>
+    </div>
+  </div>
+
+  <div class="container legal">
+    <span>&copy; {year} {site.company}. Business ID {site.businessId}.</span>
+    <span>Prices exclude VAT.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: auto;
+    background: var(--color-ink);
+    color: #cfd6d3;
+    font-size: 0.95rem;
+    padding-top: 3rem;
+  }
+
+  .columns {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+
+  .about {
+    max-width: 280px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    margin-top: 0.4rem;
+  }
+
+  a {
+    color: #cfd6d3;
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 2.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid rgb(255 255 255 / 12%);
+    font-size: 0.85rem;
+    color: #9aa5a1;
+  }
+</style>

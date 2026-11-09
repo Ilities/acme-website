@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const groups = [
+  {
+    id: 'booking',
+    title: 'Online booking',
+    intro: 'A booking page that shows real availability, with your services, prices and staff.',
+    items: [
+      'Booking page with your logo and colours, at your own link',
+      'Embed the booking widget on your existing website',
+      'Clients choose the service, the practitioner and the time',
+      'Buffer time between appointments and limits on how far ahead people can book',
+      'Clients can cancel or move their own booking up to a cut-off you set',
+    ],
+  },
+  {
+    id: 'reminders',
+    title: 'Reminders and messages',
+    intro: 'Automatic messages so clients turn up, and turn up prepared.',
+    items: [
+      'Confirmation email straight after booking',
+      'Reminder by email or SMS, 24 hours before or at a time you choose',
+      'Custom instructions per service, such as what to bring or wear',
+      'Recall messages for regular check-ups',
+      'Messages in Finnish, Swedish and English',
+    ],
+  },
+  {
+    id: 'calendar',
+    title: 'Calendar and team',
+    intro: 'A shared calendar that works at the front desk and on a phone.',
+    items: [
+      'Day, week and resource views',
+      'Working hours, breaks and holidays per staff member',
+      'Rooms and equipment as bookable resources',
+      'Two-way sync with Google Calendar and Outlook',
+      'Roles and permissions for larger teams',
+    ],
+  },
+  {
+    id: 'payments',
+    title: 'Payments',
+    intro: 'Take payment when people book, or keep it simple and charge at the clinic.',
+    items: [
+      'Card payments and MobilePay at booking',
+      'Deposits for long or expensive appointments',
+      'Class passes and gift cards',
+      'Automatic no-show fees, if you want them',
+      'Payouts to your bank account every week',
+    ],
+  },
+  {
+    id: 'classes',
+    title: 'Classes and groups',
+    intro: 'For yoga, pilates and group training.',
+    items: [
+      'Recurring class schedule with a capacity per class',
+      'Waiting list that fills free spots automatically',
+      'Multi-visit passes and memberships',
+      'Attendance list for the instructor',
+    ],
+  },
+  {
+    id: 'clients',
+    title: 'Client records',
+    intro: 'Everything about a client on one screen.',
+    items: [
+      'Visit history, notes and attachments',
+      'Consent and intake forms filled in before the first visit',
+      'Data stored in the EU, with GDPR tools for export and deletion',
+      'Import from a spreadsheet or your previous system',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Features"
+  description="Online booking, SMS reminders, a shared team calendar, payments and client records. See what Acme Book does."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Features</span>
+      <h1>What Acme Book does</h1>
+      <p class="lead">
+        We have kept the product focused on the things small clinics and studios use every day.
+        Here is what is included. Some features depend on the plan; the
+        <a href="/pricing">pricing page</a> has the details.
+      </p>
+      <nav class="jump" aria-label="Feature sections">
+        {groups.map((group) => <a href={`#${group.id}`}>{group.title}</a>)}
+      </nav>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container groups">
+      {
+        groups.map((group) => (
+          <article id={group.id} class="group">
+            <div>
+              <h2>{group.title}</h2>
+              <p class="intro">{group.intro}</p>
+            </div>
+            <ul>
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container narrow">
+      <h2>Works with the tools you already use</h2>
+      <p>
+        Acme Book connects to Google Calendar, Outlook, Stripe, MobilePay and the most common
+        Finnish accounting software. If you need something else, the Group plan includes access
+        to our REST API, and we are happy to talk about integrations you would like to see.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction heading="See it with your own services" text="A 20-minute demo, set up with your own services and opening hours." />
+</BaseLayout>
+
+<style>
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .jump a {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .jump a:hover {
+    border-color: var(--color-brand);
+  }
+
+  .groups {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .group {
+    display: grid;
+    gap: 1rem 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-line);
+    scroll-margin-top: 80px;
+  }
+
+  @media (min-width: 800px) {
+    .group {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+
+  .intro {
+    color: var(--color-muted);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.6rem;
+  }
+
+  li + li {
+    margin-top: 0.6rem;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 0.8rem;
+    height: 0.45rem;
+    border-left: 2px solid var(--color-brand);
+    border-bottom: 2px solid var(--color-brand);
+    transform: rotate(-45deg);
+  }
+</style>

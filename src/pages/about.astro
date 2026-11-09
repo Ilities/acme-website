@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const facts = [
+  { value: '2017', label: 'Founded in Helsinki' },
+  { value: '25', label: 'People on the team' },
+  { value: '1,200', label: 'Clinics and studios' },
+  { value: '4', label: 'Countries' },
+];
+
+const team = [
+  { name: 'Mikko Laine', role: 'CEO and co-founder', initials: 'ML' },
+  { name: 'Sara Lindqvist', role: 'CTO and co-founder', initials: 'SL' },
+  { name: 'Aino Heikkinen', role: 'Head of customer success', initials: 'AH' },
+  { name: 'Jonas Berg', role: 'Head of product', initials: 'JB' },
+];
+---
+
+<BaseLayout
+  title="About us"
+  description="Acme Inc is a 25-person software company in Helsinki. We make Acme Book, booking software for small clinics and studios."
+>
+  <section class="page-header">
+    <div class="container narrow">
+      <span class="eyebrow">About us</span>
+      <h1>A small company making software for small businesses</h1>
+      <p class="lead">
+        {site.company} started in 2017, when our co-founder Mikko was helping his sister run her
+        physiotherapy clinic in Kallio and could not find booking software that was both simple
+        and affordable.
+      </p>
+    </div>
+  </section>
+
+  <section class="section facts-section">
+    <div class="container">
+      <dl class="facts">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow prose">
+      <h2>How we work</h2>
+      <p>
+        We are a team of 25 in Helsinki: developers, designers, and a support team that has
+        between them worked at reception desks in clinics, salons and gyms. We are funded by our
+        customers and a small group of Finnish angel investors, which means we can take our time
+        and build what clinics actually ask for.
+      </p>
+      <p>
+        Every person at Acme, including developers, spends a few hours each month answering
+        support requests. It is the quickest way we have found to see where the product gets in
+        the way.
+      </p>
+      <h2>What we care about</h2>
+      <ul>
+        <li>Software that the least technical person at the clinic can use without training.</li>
+        <li>Prices that a one-person practice can afford.</li>
+        <li>Client data kept in the EU and handled carefully. Health data is personal.</li>
+        <li>Answering support emails the same working day, in Finnish, Swedish or English.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <h2>Leadership</h2>
+      <ul class="team">
+        {
+          team.map((person) => (
+            <li>
+              <span class="avatar" aria-hidden="true">{person.initials}</span>
+              <div>
+                <strong>{person.name}</strong>
+                <span>{person.role}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="hiring">
+        We hire a few people every year. If you would like to work with us, write to
+        <a href="mailto:jobs@acmebook.example">jobs@acmebook.example</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .facts-section {
+    padding-top: 1rem;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 0;
+  }
+
+  @media (min-width: 760px) {
+    .facts {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .facts div {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1.25rem;
+    border-top: 3px solid var(--color-brand);
+    background: var(--color-surface);
+  }
+
+  .facts dd {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-serif);
+  }
+
+  .facts dt {
+    color: var(--color-muted);
+  }
+
+  .team {
+    display: grid;
+    gap: 1.25rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 760px) {
+    .team {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .team li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .team strong,
+  .team span {
+    display: block;
+  }
+
+  .team span:not(.avatar) {
+    color: var(--color-muted);
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .hiring {
+    margin-top: 2rem;
+  }
+</style>

@@ -1,0 +1,130 @@
+---
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+const appointments = [
+  { day: 0, start: 0, length: 2, label: 'Physio, 45 min', tone: 'green' },
+  { day: 0, start: 3, length: 1, label: 'Follow-up', tone: 'sand' },
+  { day: 1, start: 1, length: 2, label: 'Sports massage', tone: 'sand' },
+  { day: 2, start: 0, length: 1, label: 'Check-up', tone: 'green' },
+  { day: 2, start: 2, length: 3, label: 'Group class', tone: 'yellow' },
+  { day: 3, start: 1, length: 1, label: 'New client', tone: 'green' },
+  { day: 4, start: 0, length: 2, label: 'Treatment', tone: 'sand' },
+  { day: 4, start: 3, length: 2, label: 'Physio, 60 min', tone: 'green' },
+];
+---
+
+<div class="mockup" aria-hidden="true">
+  <div class="toolbar">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="title">Calendar, week 12</span>
+  </div>
+  <div class="calendar">
+    {days.map((day) => <div class="day-label">{day}</div>)}
+    {
+      appointments.map((a) => (
+        <div
+          class={`slot ${a.tone}`}
+          style={`grid-column: ${a.day + 1}; grid-row: ${a.start + 2} / span ${a.length};`}
+        >
+          {a.label}
+        </div>
+      ))
+    }
+  </div>
+  <div class="notice">
+    <span class="check">&#10003;</span>
+    Reminder sent to Laura K. for tomorrow at 9:00
+  </div>
+</div>
+
+<style>
+  .mockup {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    font-size: 0.78rem;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+    margin-bottom: 0.75rem;
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-line);
+  }
+
+  .title {
+    margin-left: 0.5rem;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto repeat(5, 34px);
+    gap: 4px;
+  }
+
+  .day-label {
+    grid-row: 1;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-muted);
+    padding-bottom: 0.25rem;
+  }
+
+  .slot {
+    border-radius: 6px;
+    padding: 0.3rem 0.4rem;
+    line-height: 1.25;
+    overflow: hidden;
+  }
+
+  .green {
+    background: var(--color-brand-light);
+    border-left: 3px solid var(--color-brand);
+  }
+
+  .sand {
+    background: var(--color-sand);
+    border-left: 3px solid #b9a77f;
+  }
+
+  .yellow {
+    background: #fcefd2;
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .notice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-muted);
+  }
+
+  .check {
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: #fff;
+    font-size: 0.7rem;
+  }
+</style>

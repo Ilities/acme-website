@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookingMockup from '../components/BookingMockup.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { plans, formatPrice } from '../data/plans';
+
+const lowestPrice = Math.min(...plans.map((plan) => plan.price));
+
+const segments = [
+  {
+    name: 'Physiotherapy',
+    text: 'Treatment lengths per therapist, follow-up booking at the end of a visit, and notes that stay with the client.',
+  },
+  {
+    name: 'Dental',
+    text: 'Separate calendars for dentists and hygienists, recall reminders, and room booking for treatment chairs.',
+  },
+  {
+    name: 'Hair and beauty',
+    text: 'Clients pick the stylist and the service. Deposits for long appointments cut down on no-shows.',
+  },
+  {
+    name: 'Yoga and fitness',
+    text: 'Class schedules with a capacity limit, a waiting list, and class passes that clients can buy online.',
+  },
+];
+
+const highlights = [
+  {
+    title: 'Clients book themselves',
+    text: 'Your booking page shows only the times that are actually free. Put the link on your website, Instagram and Google profile.',
+  },
+  {
+    title: 'Fewer missed appointments',
+    text: 'Automatic reminders by email and SMS. Clinics that switch on SMS reminders typically see no-shows drop by about a third.',
+  },
+  {
+    title: 'One calendar for the team',
+    text: 'Everyone sees the same schedule on their phone or at the front desk. Changes show up straight away.',
+  },
+];
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Online booking for clinics and studios</h1>
+        <p class="lead">
+          Acme Book handles appointments, reminders and payments so you can spend the day with
+          clients instead of on the phone. Used by around 1,200 small businesses in Finland and
+          the Nordics.
+        </p>
+        <div class="button-row">
+          <a class="button" href="/contact">Book a demo</a>
+          <a class="button button--outline" href="/features">See how it works</a>
+        </div>
+        <p class="small">Plans from {formatPrice(lowestPrice)} per month. 30-day free trial.</p>
+      </div>
+      <BookingMockup />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">What it does</span>
+      <h2>The admin side of running a practice, in one place</h2>
+      <div class="grid grid--3 highlights">
+        {
+          highlights.map((item) => (
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <span class="eyebrow">Who it is for</span>
+      <h2>Built for appointment-based businesses</h2>
+      <p class="lead">
+        Most of our customers have between one and fifteen people taking appointments. If that
+        sounds like you, Acme Book will probably fit.
+      </p>
+      <div class="grid grid--2 segments">
+        {
+          segments.map((segment) => (
+            <div class="card">
+              <h3>{segment.name}</h3>
+              <p>{segment.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <figure class="quote">
+        <blockquote>
+          <p>
+            We used to spend the first hour of every morning returning calls about bookings. Now
+            most clients book online the evening before, and the phone is quiet enough that we
+            actually pick it up.
+          </p>
+        </blockquote>
+        <figcaption>
+          Henna Virtanen, owner of Fysio Kallio, Helsinki
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <CallToAction />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  .hero .lead {
+    margin-bottom: 1.75rem;
+  }
+
+  .small {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .highlights {
+    margin-top: 2rem;
+  }
+
+  .segments {
+    margin-top: 2rem;
+  }
+
+  .segments p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .quote {
+    margin: 0;
+  }
+
+  .quote blockquote {
+    margin: 0 0 1rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    line-height: 1.5;
+  }
+
+  .quote figcaption {
+    color: var(--color-muted);
+  }
+</style>

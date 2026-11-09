@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingTable from '../components/PricingTable.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const faqs = [
+  {
+    question: 'Which plan should I choose?',
+    answer:
+      'If you work on your own, Starter at €19 a month covers online booking and email reminders. Most clinics and studios with a few practitioners pick Clinic at €49 a month, mainly for SMS reminders and online payments. Group at €99 a month is for businesses running more than one location.',
+  },
+  {
+    question: 'Is there a free trial?',
+    answer:
+      'Yes. Every plan comes with a 30-day free trial, and you do not need to give us card details to start. At the end of the trial you choose a plan, or your account is paused.',
+  },
+  {
+    question: 'Do prices include VAT?',
+    answer:
+      'No. All prices are per month and exclude VAT, which is added to the invoice at the current Finnish rate.',
+  },
+  {
+    question: 'What happens if we use more SMS messages than the plan includes?',
+    answer:
+      'Extra messages cost €0.09 each and are added to the next invoice. You can set a monthly limit in the settings so the bill never surprises you.',
+  },
+  {
+    question: 'Can we change plans later?',
+    answer:
+      'You can move between plans at any time from the account settings. If you move from Clinic (€49) to Group (€99) in the middle of a month, we only charge the difference for the days left in that month.',
+  },
+  {
+    question: 'Is there a contract or notice period?',
+    answer:
+      'No. Plans are billed monthly and you can cancel whenever you like. Your data stays available for export for 90 days after cancelling.',
+  },
+  {
+    question: 'We have more than five locations. What does that cost?',
+    answer:
+      'Get in touch and we will put together a price based on the number of locations and staff. Larger groups usually end up somewhere above the €99 Group price, depending on the setup.',
+  },
+];
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Acme Book pricing: Starter, Clinic and Group plans, billed monthly. 30-day free trial, no card needed."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Pricing</span>
+      <h1>Simple monthly pricing</h1>
+      <p class="lead">
+        Three plans, billed monthly, no setup fees. Every plan starts with a 30-day free trial.
+        Prices exclude VAT.
+      </p>
+    </div>
+  </section>
+
+  <section class="section pricing">
+    <div class="container">
+      <PricingTable />
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        {
+          faqs.map((faq) => (
+            <details>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+      <p class="more">
+        Something else on your mind? Email us at <a href="mailto:sales@acmebook.example">sales@acmebook.example</a>
+        or <a href="/contact">send us a message</a>.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction />
+</BaseLayout>
+
+<style>
+  .pricing {
+    padding-top: 1.5rem;
+  }
+
+  .faq {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  details {
+    border-bottom: 1px solid var(--color-line);
+    padding-block: 1rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style-position: outside;
+  }
+
+  details p {
+    margin: 0.75rem 0 0;
+    color: var(--color-muted);
+  }
+
+  .more {
+    margin-top: 2rem;
+  }
+</style>

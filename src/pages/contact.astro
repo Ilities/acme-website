@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const formAction = 'https://forms.acmebook.example/contact';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Book a demo of Acme Book or ask us a question. We reply the same working day."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h1>Talk to us</h1>
+      <p class="lead">
+        Book a demo, ask about pricing, or get help moving over from another system. We reply on
+        the same working day.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact">
+    <div class="container layout">
+      <form class="card" method="post" action={formAction}>
+        <div class="row">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Business name
+            <input type="text" name="company" autocomplete="organization" />
+          </label>
+        </div>
+        <div class="row">
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Phone <span class="optional">(optional)</span></span>
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+        </div>
+        <label>
+          Type of business
+          <select name="business_type">
+            <option value="">Choose one</option>
+            <option>Physiotherapy</option>
+            <option>Dental</option>
+            <option>Hair and beauty</option>
+            <option>Yoga and fitness</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          What can we help with?
+          <select name="topic">
+            <option value="demo">I would like a demo</option>
+            <option value="pricing">A question about pricing</option>
+            <option value="migration">Moving from another system</option>
+            <option value="support">Support for an existing account</option>
+            <option value="other">Something else</option>
+          </select>
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="consent" required />
+          <span>I agree that Acme Inc can use these details to reply to my message.</span>
+        </label>
+        <button class="button" type="submit">Send message</button>
+      </form>
+
+      <aside class="details">
+        <h2>Other ways to reach us</h2>
+        <dl>
+          <dt>Sales and demos</dt>
+          <dd><a href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a></dd>
+          <dt>Support</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+          <dt>Phone</dt>
+          <dd>
+            <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a><br />
+            Monday to Friday, 9:00 to 16:00
+          </dd>
+          <dt>Office</dt>
+          <dd>
+            {site.address.street}<br />
+            {site.address.postcode} {site.address.city}
+          </dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding-top: 1rem;
+  }
+
+  .layout {
+    display: grid;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: start;
+    }
+  }
+
+  form {
+    display: grid;
+    gap: 1.1rem;
+    padding: 2rem;
+  }
+
+  .row {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  @media (min-width: 600px) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  label {
+    display: grid;
+    gap: 0.35rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .optional {
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    font: inherit;
+    font-weight: 400;
+    color: inherit;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--color-brand);
+    outline: 2px solid var(--color-brand-light);
+  }
+
+  .consent {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  .consent input {
+    width: auto;
+    margin-top: 0.3rem;
+  }
+
+  form .button {
+    justify-self: start;
+  }
+
+  .details h2 {
+    font-size: 1.25rem;
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dt {
+    font-weight: 600;
+    margin-top: 1.25rem;
+  }
+
+  dd {
+    margin: 0.25rem 0 0;
+    color: var(--color-muted);
+  }
+</style>
