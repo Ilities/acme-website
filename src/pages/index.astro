@@ -4,7 +4,8 @@ import BookingMockup from '../components/BookingMockup.astro';
 import CallToAction from '../components/CallToAction.astro';
 import { plans, formatPrice } from '../data/plans';
 
-const lowestPrice = Math.min(...plans.map((plan) => plan.price));
+const lowestMonthly = Math.min(...plans.map((plan) => plan.monthlyPrice));
+const lowestAnnual = Math.min(...plans.map((plan) => plan.annualMonthlyPrice));
 
 const segments = [
   {
@@ -55,7 +56,7 @@ const highlights = [
           <a class="button" href="/contact">Book a demo</a>
           <a class="button button--outline" href="/features">See how it works</a>
         </div>
-        <p class="small">Plans from {formatPrice(lowestPrice)} per month. 30-day free trial.</p>
+        <p class="small">Plans from {formatPrice(lowestMonthly)} per month, or {formatPrice(lowestAnnual)} billed annually. 30-day free trial.</p>
       </div>
       <BookingMockup />
     </div>

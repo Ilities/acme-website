@@ -2,7 +2,11 @@ export interface Plan {
   id: string;
   name: string;
   /** Monthly price in euros, VAT 0% */
-  price: number;
+  monthlyPrice: number;
+  /** Monthly equivalent for annual billing in euros, VAT 0% */
+  annualMonthlyPrice: number;
+  /** Total annual price in euros, VAT 0% */
+  annualTotal: number;
   summary: string;
   staff: string;
   locations: string;
@@ -15,7 +19,9 @@ export const plans: Plan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 19,
+    monthlyPrice: 22,
+    annualMonthlyPrice: 19,
+    annualTotal: 228,
     summary: 'For a single practitioner taking bookings online.',
     staff: '1 staff calendar',
     locations: '1 location',
@@ -31,11 +37,13 @@ export const plans: Plan[] = [
   {
     id: 'clinic',
     name: 'Clinic',
-    price: 49,
+    monthlyPrice: 59,
+    annualMonthlyPrice: 49,
+    annualTotal: 588,
     summary: 'For clinics and studios with a small team.',
-    staff: 'Up to 8 staff calendars',
-    locations: '1 location',
-    smsPerMonth: 300,
+    staff: 'Up to 10 staff calendars',
+    locations: '2 locations',
+    smsPerMonth: 400,
     highlighted: true,
     features: [
       'Everything in Starter',
@@ -50,11 +58,13 @@ export const plans: Plan[] = [
   {
     id: 'group',
     name: 'Group',
-    price: 99,
+    monthlyPrice: 119,
+    annualMonthlyPrice: 99,
+    annualTotal: 1188,
     summary: 'For businesses with several locations.',
     staff: 'Unlimited staff calendars',
     locations: 'Up to 5 locations',
-    smsPerMonth: 1000,
+    smsPerMonth: 1500,
     features: [
       'Everything in Clinic',
       'Multiple locations',
@@ -67,9 +77,9 @@ export const plans: Plan[] = [
 ];
 
 export const comparisonRows: { label: string; values: Record<string, string | boolean> }[] = [
-  { label: 'Staff calendars', values: { starter: '1', clinic: 'Up to 8', group: 'Unlimited' } },
-  { label: 'Locations', values: { starter: '1', clinic: '1', group: 'Up to 5' } },
-  { label: 'SMS included per month', values: { starter: '50', clinic: '300', group: '1,000' } },
+  { label: 'Staff calendars', values: { starter: '1', clinic: 'Up to 10', group: 'Unlimited' } },
+  { label: 'Locations', values: { starter: '1', clinic: '2', group: 'Up to 5' } },
+  { label: 'SMS included per month', values: { starter: '50', clinic: '400', group: '1,500' } },
   { label: 'Online booking page', values: { starter: true, clinic: true, group: true } },
   { label: 'Email reminders', values: { starter: true, clinic: true, group: true } },
   { label: 'Calendar sync', values: { starter: true, clinic: true, group: true } },
@@ -84,5 +94,5 @@ export const comparisonRows: { label: string; values: Record<string, string | bo
 ];
 
 export function formatPrice(price: number): string {
-  return `€${price}`;
+  return `€${price.toLocaleString('en-IE')}`;
 }

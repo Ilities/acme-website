@@ -10,9 +10,13 @@ import { plans, comparisonRows, formatPrice } from '../data/plans';
         <h3>{plan.name}</h3>
         <p class="summary">{plan.summary}</p>
         <p class="price">
-          <span class="amount">{formatPrice(plan.price)}</span>
+          <span class="amount">{formatPrice(plan.monthlyPrice)}</span>
           <span class="period">/ month</span>
         </p>
+        <p class="annual-price">
+          or {formatPrice(plan.annualMonthlyPrice)} / month billed annually ({formatPrice(plan.annualTotal)} a year)
+        </p>
+        <p class="setup-fee">No setup fee if you start before 31.3.2027</p>
         <p class="limits">
           {plan.staff}
           <br />
@@ -41,7 +45,10 @@ import { plans, comparisonRows, formatPrice } from '../data/plans';
           plans.map((plan) => (
             <th scope="col">
               {plan.name}
-              <span class="th-price">{formatPrice(plan.price)} / month</span>
+              <span class="th-price">
+                {formatPrice(plan.monthlyPrice)} / month<br />
+                or {formatPrice(plan.annualMonthlyPrice)} billed annually
+              </span>
             </th>
           ))
         }
@@ -110,6 +117,17 @@ import { plans, comparisonRows, formatPrice } from '../data/plans';
 
   .price {
     margin-bottom: 0.5rem;
+  }
+
+  .annual-price,
+  .setup-fee {
+    margin: 0.35rem 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .setup-fee {
+    margin-bottom: 1rem;
   }
 
   .amount {
