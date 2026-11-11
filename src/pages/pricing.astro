@@ -7,17 +7,22 @@ const faqs = [
   {
     question: 'Which plan should I choose?',
     answer:
-      'If you work on your own, Starter at €19 a month covers online booking and email reminders. Most clinics and studios with a few practitioners pick Clinic at €49 a month, mainly for SMS reminders and online payments. Group at €99 a month is for businesses running more than one location.',
+      'If you work on your own, Starter covers online booking and email reminders. Most clinics and studios with a few practitioners pick Clinic, mainly for SMS reminders and online payments. Group is for businesses running more than one location.',
   },
   {
     question: 'Is there a free trial?',
     answer:
-      'Yes. Every plan comes with a 30-day free trial, and you do not need to give us card details to start. At the end of the trial you choose a plan, or your account is paused.',
+      'Yes. Every plan comes with a 30-day free trial, and you do not need to give us card details to start. At the end of the trial you choose a plan and a billing period, or your account is paused.',
+  },
+  {
+    question: 'How does annual billing work?',
+    answer:
+      'You pay for twelve months at once at a discount, which works out to about two months free compared with paying monthly. An annual plan runs for the twelve months you have paid for.',
   },
   {
     question: 'Do prices include VAT?',
     answer:
-      'No. All prices are per month and exclude VAT, which is added to the invoice at the current Finnish rate.',
+      'No. All prices exclude VAT, which is added to the invoice at the current Finnish rate.',
   },
   {
     question: 'What happens if we use more SMS messages than the plan includes?',
@@ -27,32 +32,33 @@ const faqs = [
   {
     question: 'Can we change plans later?',
     answer:
-      'You can move between plans at any time from the account settings. If you move from Clinic (€49) to Group (€99) in the middle of a month, we only charge the difference for the days left in that month.',
+      'You can move between plans at any time from the account settings. On a monthly plan, if you move from Clinic to Group in the middle of a month, we only charge the difference for the days left. On an annual plan, moving up works the same way and we charge the difference for the months left; moving down takes effect at the next renewal.',
   },
   {
     question: 'Is there a contract or notice period?',
     answer:
-      'No. Plans are billed monthly and you can cancel whenever you like. Your data stays available for export for 90 days after cancelling.',
+      'Monthly plans have no contract: you can cancel whenever you like. An annual plan runs for the twelve months you have paid for; cancelling stops the following renewal and the months left are not refunded. Your data stays available for export for 90 days after cancelling.',
   },
   {
     question: 'We have more than five locations. What does that cost?',
     answer:
-      'Get in touch and we will put together a price based on the number of locations and staff. Larger groups usually end up somewhere above the €99 Group price, depending on the setup.',
+      'Get in touch and we will put together a price based on the number of locations and staff. Larger groups usually end up somewhere above the Group price, depending on the setup.',
   },
 ];
 ---
 
 <BaseLayout
   title="Pricing"
-  description="Acme Book pricing: Starter, Clinic and Group plans, billed monthly. 30-day free trial, no card needed."
+  description="Acme Book pricing: Starter, Clinic and Group plans with monthly or annual billing. 30-day free trial, no card needed."
 >
   <section class="page-header">
     <div class="container">
       <span class="eyebrow">Pricing</span>
-      <h1>Simple monthly pricing</h1>
+      <h1>Simple pricing</h1>
       <p class="lead">
-        Three plans, billed monthly, no setup fees. Every plan starts with a 30-day free trial.
-        Prices exclude VAT.
+        Three plans, billed monthly or once a year — annual billing works out to about two months free.
+        Setup is free if you start before 31.3.2027. Every plan starts with a 30-day free trial.
+        Prices exclude VAT and apply from 1 January 2027.
       </p>
     </div>
   </section>
