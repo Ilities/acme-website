@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BookingMockup from '../components/BookingMockup.astro';
 import CallToAction from '../components/CallToAction.astro';
-import { plans, formatPrice } from '../data/plans';
+import { plans, formatPrice, setupFreeBefore } from '../data/plans';
 
 const lowestMonthly = Math.min(...plans.map((plan) => plan.monthlyPrice));
 const lowestAnnual = Math.min(...plans.map((plan) => plan.annualMonthlyPrice));
@@ -58,7 +58,7 @@ const highlights = [
         </div>
         <p class="small">
           Plans from {formatPrice(lowestMonthly)} per month, or {formatPrice(lowestAnnual)} billed
-          annually. 30-day free trial.
+          annually. 30-day free trial. No setup fee if you start before {setupFreeBefore}.
         </p>
       </div>
       <BookingMockup />
